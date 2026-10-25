@@ -6,6 +6,7 @@ Módulo da Entidade Pássaro
 import pygame
 from config import (
     ALTURA,
+    ALTURA_CHAO,
     BRANCO,
     COR_ASA,
     COR_BICO,
@@ -22,7 +23,7 @@ from config import (
 class Passaro:
     """
     Representa o pássaro controlado pelo jogador, gerenciando sua posição,
-    física (gravidade e pulo) e renderização na tela.
+    física (gravidade e pulo), retângulo de colisão (rect) e renderização.
     """
 
     def __init__(self):
@@ -30,35 +31,42 @@ class Passaro:
         self.y = ALTURA // 2
         self.raio = PASSARO_RAIO
         self.velocidade_y = 0.0
+        self.rect = pygame.Rect(
+            int(self.x - self.raio),
+            int(self.y - self.raio),
+            self.raio * 2,
+            self.raio * 2,
+        )
 
     def pular(self):
         """Aplica um impulso vertical para cima."""
         self.velocidade_y = FORCA_PULO
 
     def atualizar(self):
-        """Atualiza a velocidade e a posição vertical com base na gravidade."""
+        """Atualiza a velocidade, a posição vertical e sincroniza o rect de colisão."""
         self.velocidade_y += GRAVIDADE
         if self.velocidade_y > VELOCIDADE_MAX_QUEDA:
             self.velocidade_y = VELOCIDADE_MAX_QUEDA
 
         self.y += self.velocidade_y
 
-        # Limites provisórios de topo e base da tela para testes na Etapa 2
+        limite_chao_y = ALTURA - ALTURA_CHAO
+
+        # Impede que o pássaro atravesse o topo ou afunde além da superfície do chão
         if self.y - self.raio < 0:
             self.y = self.raio
             self.velocidade_y = 0.0
-        elif self.y + self.raio > ALTURA:
-            self.y = ALTURA - self.raio
+        elif self.y + self.raio > limite_chao_y:
+            self.y = limite_chao_y - self.raio
             self.velocidade_y = 0.0
+
+        # Sincroniza o atributo obrigatório rect com a posição atual
+        self.rect.x = int(self.x - self.raio)
+        self.rect.y = int(self.y - self.raio)
 
     def obter_rect(self):
         """Retorna o retângulo de colisão (hitbox) do pássaro."""
-        return pygame.Rect(
-            int(self.x - self.raio),
-            int(self.y - self.raio),
-            self.raio * 2,
-            self.raio * 2,
-        )
+        return self.rect
 
     def desenhar(self, tela):
         """Desenha o pássaro na tela com corpo, asa, olho e bico."""

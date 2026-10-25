@@ -1,0 +1,28 @@
+==========================================
+FLAPPY BIRD - CLONE EM PYGAME
+==========================================
+
+1. ATIVAR O AMBIENTE VIRTUAL (PowerShell)
+------------------------------------------
+Na pasta do projeto, execute:
+    .\venv\Scripts\Activate.ps1
+
+(Observação: caso o PowerShell bloqueie a execução de scripts por política
+de segurança, você não precisa alterar a política do sistema. Basta rodar
+os comandos diretamente usando o executável do venv, como mostrado abaixo.)
+
+2. INSTALAR AS DEPENDÊNCIAS
+------------------------------------------
+Com o venv ativado:
+    pip install -r requirements.txt
+
+Ou diretamente sem ativar o venv:
+    .\venv\Scripts\python.exe -m pip install -r requirements.txt
+
+3. EXECUTAR O JOGO
+------------------------------------------
+Com o venv ativado:
+    python main.py
+
+Ou diretamente sem ativar o venv:
+    .\venv\Scripts\python.exe main.py

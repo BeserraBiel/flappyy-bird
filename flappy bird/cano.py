@@ -27,6 +27,7 @@ class Cano:
 
     def __init__(self):
         self.x = LARGURA
+        self.pontuado = False
 
         # Sorteia onde começa o vão vertical respeitando as margens de segurança
         topo_vao = random.randint(MARGEM_VAO_MIN, MARGEM_VAO_MAX)

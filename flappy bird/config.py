@@ -3,6 +3,8 @@ Flappy Bird - Clone em Pygame
 Módulo de Configurações e Constantes Globais
 """
 
+import pygame
+
 # ==========================================
 # CONFIGURAÇÕES DA JANELA E JOGO
 # ==========================================
@@ -26,6 +28,7 @@ COR_CANO = (34, 177, 76)        # Verde dos canos
 COR_CHAO = (222, 216, 149)      # Bege clássico do chão
 BRANCO = (255, 255, 255)
 PRETO = (0, 0, 0)
+COR_PAINEL_FUNDO = (30, 30, 30) # Fundo escuro para o painel de Game Over
 
 # ==========================================
 # CONSTANTES DE FÍSICA DO PÁSSARO
@@ -46,3 +49,24 @@ VELOCIDADE_CANO = 3             # Velocidade de deslocamento dos canos para a es
 INTERVALO_CANO = 1500           # Intervalo de geração de novos canos (em milissegundos)
 MARGEM_VAO_MIN = 70             # Posição Y mínima para o início do vão livre
 MARGEM_VAO_MAX = ALTURA - ALTURA_CHAO - GAP_CANO - 70  # Posição Y máxima para o início do vão
+
+# ==========================================
+# CONSTANTES DE PLACAR, INTERFACE E REINÍCIO
+# ==========================================
+TAMANHO_FONTE_PLACAR = 56       # Tamanho da fonte do placar no topo
+TAMANHO_FONTE_GAME_OVER = 54    # Tamanho da fonte do título de Game Over
+TAMANHO_FONTE_INSTRUCAO = 26    # Tamanho da fonte dos textos secundários
+COR_TEXTO = (255, 255, 255)     # Cor principal dos textos (Branco)
+POS_PLACAR = (LARGURA // 2, 50) # Posição centralizada do placar no topo da tela
+TECLA_REINICIAR = pygame.K_r    # Tecla para reiniciar a partida no Game Over
+TEXTO_GAME_OVER = "Game Over"   # Texto principal exibido ao fim de jogo
+TEXTO_REINICIAR = "Pressione R para jogar novamente"
+
+# Layout da caixa de Game Over (sem números mágicos)
+PAINEL_LARGURA = 340
+PAINEL_ALTURA = 190
+PAINEL_BORDA = 3
+OFFSET_SOMBRA_TEXTO = 2
+OFFSET_TITULO_Y = -50
+OFFSET_SCORE_FINAL_Y = 0
+OFFSET_INSTRUCAO_Y = 50
